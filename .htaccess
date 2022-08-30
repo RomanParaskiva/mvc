@@ -8,3 +8,4 @@ RewriteEngine On
 RewriteRule ^assets/ - [END]
 RewriteRule ^robots.txt$ - [END]
 RewriteRule ^(?:.*)$ index.php [END]
+

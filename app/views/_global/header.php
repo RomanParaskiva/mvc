@@ -24,6 +24,7 @@
 		<ul>
 			<li><a href="<?= Utils::generateLink(''); ?>">Home</a></li>
 			<li><a href="<?= Utils::generateLink('tasks'); ?>">Tasks</a></li>
+			<li><a href="<?= Utils::generateLink('clients'); ?>">Clients</a></li>
 			<?php if (empty(Session::get(Config::USER_COOKIE))): ?>
 			<li><a href="<?= Utils::generateLink('login'); ?>">Log in</a></li>
 			<?php else:?>

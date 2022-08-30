@@ -9,12 +9,12 @@ final class Config {
 	 * Апсолутни линк апликације
 	 * @var string
 	 */
-	const BASE = 'http://localhost/dev/mvc/';
+	const BASE = 'http://tickets/';
 
 	/**
 	 * Релативни линк апликације (на продукцији најчешће само '/')
 	 */
-	const PATH = '/dev/mvc/';
+	const PATH = '/';
 
 	/**
 	 * Сервер БП: име хоста
@@ -32,13 +32,13 @@ final class Config {
 	 * Сервер БП: лозинка
 	 * @var string
 	 */
-	const DB_PASS = '';
+	const DB_PASS = 'root';
 
 	/**
 	 * Сервер БП: име базе
 	 * @var string
 	 */
-	const DB_NAME = 'mvc';
+	const DB_NAME = 'tickets';
 
 	/**
 	 * Сесијска променљива у којој ће бити складиштен корисников ИД приликом пријаве

@@ -5,6 +5,9 @@ return [
 	new Route('Home', 'index', '|^/?$|'),
 	new Route('Home', 'login', '|^login/?$|'),
 	new Route('Home', 'logout', '|^logout/?$|'),
+	// ClientController
+	new Route('Client', 'index', '|^clients/?$|'),
+	new Route('Client', 'create', '|^clients/create/?$|'),
 	// TaskController
 	new Route('Task', 'index', '|^tasks/?$|'),
 	new Route('Task', 'create', '|^tasks/create/?$|'),
