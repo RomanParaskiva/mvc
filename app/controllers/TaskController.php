@@ -12,14 +12,14 @@ class TaskController extends AuthController {
 	public function index() {
 		// Постављање наслова
 		$this->set('title', 'Tasks');
-
+    $id = intval(Session::get(Config::USER_COOKIE));
 		// Узимање података из базе
-		$tasks = TaskModel::getAllFromInnerJoinWithUsers();
+		$tasks = TaskModel::getAllFromInnerJoinWithUsers($id);
 
 		// Форматирање података за приказ
 		foreach ($tasks as $task) {
 			$task->created_at = Utils::formatDateAndTime($task->created_at);
-			$task->user = $this->formatFirstAndLastName($task->first_name, $task->last_name);
+		
 		}
 
 		// Прослеђивање података слоју приказа
@@ -40,8 +40,8 @@ class TaskController extends AuthController {
 		}
 
 		// Узимање података из HTTP POST променљивих
-		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-		$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
+		$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
 
 		// Валидација података
 		if (empty($name) || empty($description)) {
@@ -88,8 +88,8 @@ class TaskController extends AuthController {
 
 		// Узимање података из HTTP POST променљивих
 		$id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-		$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
+		$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
 
 		// Валидација података
 		if (empty($name) || empty($description)) {

@@ -8,6 +8,7 @@ return [
 	// ClientController
 	new Route('Client', 'index', '|^clients/?$|'),
 	new Route('Client', 'create', '|^clients/create/?$|'),
+	new Route('Client', 'update', '|^clients/update/([0-9]+)/?$|'),
 	// TaskController
 	new Route('Task', 'index', '|^tasks/?$|'),
 	new Route('Task', 'create', '|^tasks/create/?$|'),

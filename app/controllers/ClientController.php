@@ -16,11 +16,9 @@ class ClientController extends AuthController {
 		// Узимање података из базе
 		$clients = ClientModel::getClientsByUserId($userId);
 
-		// Форматирање података за приказ
-		// foreach ($tasks as $task) {
-		// 	$task->created_at = Utils::formatDateAndTime($task->created_at);
-		// 	$task->user = $this->formatFirstAndLastName($task->first_name, $task->last_name);
-		// }
+		foreach ($clients as $client) {
+			$client->created_at = Utils::formatDateAndTime($client->created_at);
+		}
 
 		// Прослеђивање података слоју приказа
 		$this->set('clients', $clients);
@@ -78,53 +76,61 @@ class ClientController extends AuthController {
 	}
 
 	/**
-	 * Рута: /tasks/update/$id
-	 * @param int $id ID параметар
+	 * Рута: /clients/update/$id
+	 * @param int $id ID параметр
 	 * @return void
 	 */
 	public function update($id) {
+
+		$client = ClientModel::getById($id);
 		// Постављање наслова
-		$this->set('title', 'Update task');
+		$this->set('title', 'Редактирование данных клиента '.$client->name);
 
 		// Обустави даљу обраду захтева у случају да није одговарајућа HTTP метода
 		if (!Http::isPost()) {
-			$this->setTask($id);
+			$this->setClient($id);
 			return;
 		}
 
 		// Узимање података из HTTP POST променљивих
 		$id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-		$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
+		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
+		$phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_NUMBER_INT);
+		$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+		$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
 
 		// Валидација података
 		if (empty($name) || empty($description)) {
 			$this->set('message', 'Error #1!');
-			$this->setTask($id);
+			$this->setClient($id);
 			return;
 		}
 
 		// Нормализација података пре уписа у базу
 		$userId = intval(Session::get(Config::USER_COOKIE));
 		$name = trim($name);
+		$phone = trim($phone);
+		$email = trim($email);
 		$description = trim($description);
 
 		// Ажурирање података у бази
-		$status = TaskModel::update($id, [
+		$status = ClientModel::update($id, [
 			'user_id' => $userId,
 			'name' => $name,
+			'phone' => $phone,
+			'email' => $email,
 			'description' => $description
 		]);
 
 		// Повратак на формулар у случају неуспелог уписа у базу
 		if (!$status) {
 			$this->set('message', 'Error #2!');
-			$this->setTask($id);
+			$this->setClient($id);
 			return;
 		}
 
 		// Редирекција
-		Redirect::to('tasks');
+		Redirect::to('clients');
 	}
 
 	/**
@@ -145,12 +151,12 @@ class ClientController extends AuthController {
 	 * @param int $id ID параметар
 	 * @return void
 	 */
-	private function setTask($id, $name = 'task') {
+	private function setClient($id, $name = 'client') {
 		// Узимање података из базе
-		$task = TaskModel::getById($id);
+		$client = ClientModel::getById($id);
 
 		// Прослеђивање података слоју приказа
-		$this->set($name, $task);
+		$this->set($name, $client);
 	}
 
 	/**

@@ -15,23 +15,26 @@ class TaskModel extends Model {
 	 * Враћање свих редова из табеле - INNER JOIN са табелом `users`
 	 * @return array
 	 */
-	public static function getAllFromInnerJoinWithUsers() {
+	public static function getAllFromInnerJoinWithUsers($id) {
 		$tasks = sprintf('`%s`', self::getTableName());
-		$users = sprintf('`%s`', UserModel::getTableName());
 
 		/**
 		 * Редослед табела у SELECT реду је битан јер желимо да `id` поље из табеле `tasks` прегази `id` поље из табеле `users`
 		 */
-		$sql = <<<END
-		SELECT $tasks.*, $users.`first_name`, $users.`last_name`
-		FROM $tasks INNER JOIN $users
-		ON $tasks.`user_id` = $users.`id`;
-		END;
+		$sql = "SELECT * FROM $tasks WHERE `user_id` = ? "; 
 
 		$pst = DB::getInstance()->prepare($sql);
+		$pst->bindValue(1, $id, PDO::PARAM_INT);
 		$pst->execute();
 
 		return $pst->fetchAll();
 	}
 
 }
+
+
+// <<<END
+// 		SELECT $tasks.*, $users.`first_name`, $users.`last_name`
+// 		FROM $tasks INNER JOIN $users
+// 		ON $tasks.`user_id` = $users.`id`;
+// 		END;
