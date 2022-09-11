@@ -3,3 +3,7 @@ docs/
 
 # PHPUnit
 phpunit
+
+node_modules
+
+/assets/css/main.css

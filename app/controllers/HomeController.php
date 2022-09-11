@@ -42,11 +42,11 @@ class HomeController extends Controller {
 
 		// Узимање података из HTTP POST променљивих
 		$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-		$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+		$password = filter_input(INPUT_POST, 'password', FILTER_DEFAULT);
 
 		// Валидација података
 		if (empty($email) || empty($password) || strlen($email) > 255) {
-			$this->set('message', 'Error #1!');
+			$this->set('message', 'Заполните все поля формы');
 			return;
 		}
 
@@ -65,6 +65,7 @@ class HomeController extends Controller {
 		// Постављање сесијског колачића у случају успешне аутентификације
 		if ($user) {
 			Session::set(Config::USER_COOKIE, intval($user->id));
+			Session::set(Config::USER_ROLE, intval($user->role));
 			Redirect::to('');
 		} else {
 			$this->set('message', 'Error #3!');

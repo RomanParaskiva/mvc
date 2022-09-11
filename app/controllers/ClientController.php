@@ -38,10 +38,10 @@ class ClientController extends AuthController {
 		}
 
 		// Узимање података из HTTP POST променљивих
-		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
-		$phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_SPECIAL_CHARS);
-		$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
-		$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
+		$name =  htmlspecialchars(filter_input(INPUT_POST, 'name', FILTER_DEFAULT ));
+		$phone =  htmlspecialchars(filter_input(INPUT_POST, 'phone', FILTER_DEFAULT ));
+		$email =  htmlspecialchars(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
+		$description =  htmlspecialchars(filter_input(INPUT_POST, 'description', FILTER_DEFAULT ));
 
 		// Валидација података
 		if (empty($name) || empty($description)) {
@@ -94,10 +94,10 @@ class ClientController extends AuthController {
 
 		// Узимање података из HTTP POST променљивих
 		$id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
-		$phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_NUMBER_INT);
-		$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-		$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
+		$name =  htmlspecialchars(filter_input(INPUT_POST, 'name', FILTER_DEFAULT ));
+		$phone =  htmlspecialchars(filter_input(INPUT_POST, 'phone', FILTER_DEFAULT ));
+		$email =  htmlspecialchars(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
+		$description =  htmlspecialchars(filter_input(INPUT_POST, 'description', FILTER_DEFAULT ));
 
 		// Валидација података
 		if (empty($name) || empty($description)) {
@@ -134,16 +134,16 @@ class ClientController extends AuthController {
 	}
 
 	/**
-	 * Рута: /tasks/delete/$id
+	 * Рута: /client/delete/$id
 	 * @param int $id ID параметар
 	 * @return void
 	 */
 	public function delete($id) {
 		// Уклањање података из базе
-		TaskModel::delete($id);
+		ClientModel::delete($id);
 
 		// Редирекција
-		Redirect::to('tasks');
+		Redirect::to('clients');
 	}
 
 	/**

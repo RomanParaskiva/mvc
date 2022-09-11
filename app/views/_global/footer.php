@@ -1,8 +1,4 @@
-	<footer>
-		<p>
-			<em>&copy; Miloš Milanović, <?= date('Y'); ?>.</em>
-		</p>
-	</footer>
+	</main>
 	<!-- JavaScript -->
 	<script src="<?= Utils::generateLink('assets/js/main.js'); ?>"></script>
 	<?php if (isset($DATA['JAVASCRIPT_MODULE'])): ?>

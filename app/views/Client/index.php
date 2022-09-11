@@ -1,4 +1,7 @@
-<main>
+
+	<p>
+		<a href="<?= Utils::generateLink('clients/create') ?>">Добавить клиента</a>
+	</p>
 	<?php if (empty($DATA['clients'])): ?>
 	<p>Пока что нет ни одного клиента :( </p>
 	<?php else: ?>
@@ -43,7 +46,4 @@
 	</div>
 	<?php endif; ?>
 	
-	<p>
-		<a href="<?= Utils::generateLink('clients/create') ?>">Добавить клиента</a>
-	</p>
-</main>
+

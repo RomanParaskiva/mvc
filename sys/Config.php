@@ -46,10 +46,18 @@ final class Config {
 	 */
 	const USER_COOKIE = 'user_id';
 
+
+	/**
+	 * Роль пользователя
+	 * @var string
+	 * 
+	*/
+	const USER_ROLE = 'user_role';
+
 	/**
 	 * Случајни или псеудо-случајни стринг произвољне дужине
 	 * @var string
 	 */
-	const SALT = '34aa3fb2c440cac0b1cdbb49146a2f34';
+	const SALT = '34aa3fb2d3249fsd0s8df9846a2f34';
 
 }
