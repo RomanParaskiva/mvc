@@ -37,7 +37,9 @@
 		</table>
 	</div> -->
 	<?php // endif; ?>
-	
-	<div class="flex flex-wrap ">
 
+	
+	<div class="h-full">
+			<?php echo $DATA['calendar']; ?>					
 	</div>
+

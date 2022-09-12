@@ -35,4 +35,4 @@
 		</nav>
 	</div>
 
-	<main class="w-[100vw] h-[calc(100vh_-_60px)] p-3">
+	<main class="w-[100vw] h-[calc(100vh_-_60px)] p-3 overflow-y-auto">

@@ -1,4 +1,4 @@
-<main>
+
 	<?php if (isset($DATA['message'])): ?>
 	<p><?= Security::escape($DATA['message']); ?></p>
 	<?php endif; ?>
@@ -11,4 +11,3 @@
 		
 		<button type="submit">Создать</button>
 	</form>
-</main>

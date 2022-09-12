@@ -1,0 +1,27 @@
+{
+  "name": "tickets",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">\r \t<img src=\"assets/img/logo.png\" alt=\"PHP MVC Boilerplate\">\r </p>",
+  "main": "tailwind.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.1.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomanParaskiva/mvc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RomanParaskiva/mvc/issues"
+  },
+  "homepage": "https://github.com/RomanParaskiva/mvc#readme"
+}

@@ -16,6 +16,10 @@ class CalendarController extends AuthController {
 		// Узимање података из базе
 		$dates = CalendarModel::getAll();
 
+		$this->set(
+			'calendar', Calendar::getInterval(date('n.Y'), date('n.Y', strtotime('+11 month')))
+		);
+
 		// Прослеђивање података слоју приказа
 		$this->set('dates', $dates);
 	}
@@ -51,7 +55,7 @@ class CalendarController extends AuthController {
 		$phone = trim($phone);
 
 		// Упис података у базу
-		$bus = BusesModel::create([
+		$bus = CalendarModel::create([
 			'company' => $company,
 			'phone' => $phone,
 			'seats' => $seats,
@@ -74,7 +78,7 @@ class CalendarController extends AuthController {
 	 */
 	public function update($id) {
 
-		$bus = BusesModel::getById($id);
+		$bus = CalendarModel::getById($id);
 		// Постављање наслова
 		$this->set('title', 'Редактирование данных автобуса '. $bus->company);
 
@@ -98,7 +102,7 @@ class CalendarController extends AuthController {
 		}
 
 		// Ажурирање података у бази
-		$status = BusesModel::update($id, [
+		$status = CalendarModel::update($id, [
 			'company' => trim($company),
 			'phone' => trim($phone),
 			'seats' => trim($seats),
@@ -122,7 +126,7 @@ class CalendarController extends AuthController {
 	 */
 	public function delete($id) {
 		// Уклањање података из базе
-		BusesModel::delete($id);
+		CalendarModel::delete($id);
 
 		// Редирекција
 		Redirect::to('buses');
@@ -135,7 +139,7 @@ class CalendarController extends AuthController {
 	 */
 	private function setBus($id, $name = 'bus') {
 		// Узимање података из базе
-		$bus = BusesModel::getById($id);
+		$bus = CalendarModel::getById($id);
 
 		// Прослеђивање података слоју приказа
 		$this->set($name, $bus);
