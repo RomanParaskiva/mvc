@@ -28,6 +28,7 @@ return [
 	new Route('Calendar', 'create', '|^calendar/create/?$|'),
 	new Route('Calendar', 'update', '|^calendar/update/([0-9]+)/?$|'),
 	new Route('Calendar', 'delete', '|^calendar/delete/([0-9]+)/?$|'),
+	new Route('Calendar', 'day', '|^calendar/day/([0-9]+)/?$|'),
 
 	// TaskController
 	new Route('Task', 'index', '|^tasks/?$|'),
